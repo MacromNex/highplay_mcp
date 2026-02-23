@@ -1,0 +1,10 @@
+2025-12-31 18:28:36.031 | INFO     | __main__:run_all_tests:221 - Starting comprehensive MCP server tests...
+2025-12-31 18:28:36.031 | INFO     | __main__:log_test:48 - ✓ server_initialization: PASSED
+2025-12-31 18:28:36.031 | ERROR    | __main__:log_test:51 - ✗ get_server_info: FAILED - 'FastMCP' object has no attribute 'call_tool'
+2025-12-31 18:28:36.031 | ERROR    | __main__:log_test:51 - ✗ job_management_tools: FAILED - 'FastMCP' object has no attribute 'call_tool'
+2025-12-31 18:28:36.031 | ERROR    | __main__:log_test:51 - ✗ sync_tool_error_handling: FAILED - 'FastMCP' object has no attribute 'call_tool'
+2025-12-31 18:28:36.031 | ERROR    | __main__:log_test:51 - ✗ submit_tools: FAILED - 'FastMCP' object has no attribute 'call_tool'
+2025-12-31 18:28:36.031 | INFO     | __main__:test_real_world_scenario:194 - Starting real-world scenario test...
+2025-12-31 18:28:36.031 | ERROR    | __main__:log_test:51 - ✗ real_world_scenario: FAILED - 'FastMCP' object has no attribute 'call_tool'
+2025-12-31 18:28:36.032 | INFO     | __main__:run_all_tests:245 - Test completed: 1/6 passed
+2025-12-31 18:28:36.032 | INFO     | __main__:run_all_tests:246 - Report saved to: reports/step7_integration.json

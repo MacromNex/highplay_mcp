@@ -1,0 +1,99 @@
+{
+  "_description": "Default configuration shared across all cyclic peptide MCP scripts",
+  "_version": "1.0.0",
+  "_created": "2024-12-31",
+
+  "peptide_constraints": {
+    "_description": "Universal constraints for cyclic peptides",
+    "min_length": 8,
+    "max_length": 50,
+    "required_cysteines": 2,
+    "min_cysteine_distance": 3,
+    "max_cysteine_distance": 20,
+    "allowed_amino_acids": ["A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V"]
+  },
+
+  "physicochemical_defaults": {
+    "_description": "Default physicochemical calculation parameters",
+    "ph": 7.0,
+    "temperature": 298.15,
+    "ionic_strength": 0.15,
+    "hydrophobic_residues": ["A", "V", "I", "L", "M", "F", "Y", "W"],
+    "positive_residues": ["R", "K", "H"],
+    "negative_residues": ["D", "E"]
+  },
+
+  "file_formats": {
+    "_description": "Supported input/output file formats",
+    "sequence_formats": ["fasta", "txt", "csv"],
+    "structure_formats": ["pdb", "cif"],
+    "data_formats": ["csv", "json", "pickle"],
+    "default_precision": 4
+  },
+
+  "validation": {
+    "_description": "Input validation settings",
+    "strict_validation": true,
+    "allow_unknown_amino_acids": false,
+    "check_cyclization": true,
+    "warn_on_unusual_properties": true
+  },
+
+  "performance": {
+    "_description": "Performance and resource settings",
+    "max_memory_gb": 8,
+    "max_runtime_hours": 24,
+    "progress_reporting_interval": 10,
+    "checkpoint_frequency": 100
+  },
+
+  "logging": {
+    "_description": "Default logging configuration",
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "save_logs": true,
+    "max_log_size_mb": 100
+  },
+
+  "paths": {
+    "_description": "Default paths for models, data, and outputs",
+    "models_dir": "models",
+    "data_dir": "examples/data",
+    "output_dir": "results",
+    "config_dir": "configs",
+    "temp_dir": "tmp"
+  },
+
+  "external_dependencies": {
+    "_description": "Configuration for external tools and APIs",
+    "colabfold": {
+      "available": false,
+      "timeout": 300,
+      "max_retries": 3
+    },
+    "alphafold": {
+      "available": false,
+      "database_path": null
+    },
+    "structure_prediction": {
+      "enable": false,
+      "fallback_to_simulation": true
+    }
+  },
+
+  "mcp_integration": {
+    "_description": "Settings for MCP tool integration",
+    "tool_timeout": 300,
+    "max_input_size_mb": 10,
+    "return_intermediate_results": false,
+    "standardized_output": true
+  },
+
+  "error_handling": {
+    "_description": "Error handling and recovery settings",
+    "continue_on_errors": false,
+    "save_error_state": true,
+    "max_retry_attempts": 3,
+    "graceful_degradation": true
+  }
+}

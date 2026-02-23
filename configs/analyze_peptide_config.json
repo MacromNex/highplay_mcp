@@ -1,0 +1,65 @@
+{
+  "_description": "Configuration for cyclic peptide analysis and mutation suggestions",
+  "_source": "Extracted from examples/use_case_2_peptide_analysis.py",
+  "_script": "scripts/analyze_peptide.py",
+
+  "analysis": {
+    "simulate_binding_scores": true,
+    "score_range": {
+      "_description": "Range for simulated binding scores",
+      "min": 0.3,
+      "max": 0.9
+    },
+    "plddt_range": {
+      "_description": "Range for simulated plDDT confidence scores",
+      "min": 60,
+      "max": 90
+    },
+    "confidence_range": {
+      "_description": "Range for overall confidence scores",
+      "min": 0.5,
+      "max": 0.95
+    }
+  },
+
+  "mutations": {
+    "_description": "Configuration for mutation suggestion generation",
+    "max_suggestions": 10,
+    "min_improvement": 0.01,
+    "position_scan": true,
+    "_note": "position_scan=true means scan all positions for mutations"
+  },
+
+  "validation": {
+    "_description": "Peptide validation parameters",
+    "min_length": 8,
+    "max_length": 50,
+    "require_cysteines": true,
+    "min_cysteine_distance": 3,
+    "max_cysteine_distance": 20
+  },
+
+  "physicochemical": {
+    "_description": "Physicochemical property calculation settings",
+    "ph": 7.0,
+    "temperature": 298.15,
+    "ionic_strength": 0.15
+  },
+
+  "output": {
+    "_description": "Output formatting and file generation settings",
+    "include_metadata": true,
+    "precision": 4,
+    "save_report": true,
+    "save_mutations": true,
+    "format": "csv"
+  },
+
+  "scoring_weights": {
+    "_description": "Weights for combining different scoring components",
+    "_note": "Used when real structure prediction is available",
+    "binding_affinity": 0.5,
+    "structural_confidence": 0.3,
+    "physicochemical": 0.2
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "_description": "Configuration for cyclic peptide design using MCTS optimization",
+  "_source": "Extracted from examples/use_case_1_peptide_design.py",
+  "_script": "scripts/design_peptide.py",
+
+  "design": {
+    "_description": "Main design algorithm parameters",
+    "peptide_length": 16,
+    "iterations": 300,
+    "jumpout_num": 30,
+    "use_structure_prediction": false,
+    "simulation_mode": true,
+    "_note": "use_structure_prediction=false for simplified demo mode"
+  },
+
+  "scoring": {
+    "_description": "Peptide scoring function weights",
+    "plddt_only": true,
+    "binding_weight": 0.6,
+    "plddt_weight": 0.4,
+    "cyclization_penalty": 0.2,
+    "_note": "plddt_only=true uses only structure confidence when available"
+  },
+
+  "mcts": {
+    "_description": "Monte Carlo Tree Search parameters",
+    "c_puct": 5.0,
+    "n_playout": 100,
+    "temperature": 1.0,
+    "dirichlet_alpha": 0.3,
+    "_note": "c_puct controls exploration vs exploitation balance"
+  },
+
+  "optimization": {
+    "_description": "Peptide sequence optimization constraints",
+    "max_sequence_length": 50,
+    "min_sequence_length": 8,
+    "cysteine_distance_min": 3,
+    "cysteine_distance_max": 20,
+    "allowed_amino_acids": ["A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V"]
+  },
+
+  "simulation_scoring": {
+    "_description": "Simplified scoring for demo mode",
+    "hydrophobic_weight": 0.3,
+    "charge_penalty": 0.1,
+    "length_penalty": 0.02,
+    "cyclization_bonus": 0.1,
+    "noise_std": 0.05,
+    "_note": "These weights simulate realistic peptide-protein binding preferences"
+  },
+
+  "convergence": {
+    "_description": "Optimization convergence criteria",
+    "min_improvement": 0.001,
+    "patience": 50,
+    "score_threshold": 0.9,
+    "_note": "Stop if no improvement for 'patience' iterations"
+  },
+
+  "mutation_strategy": {
+    "_description": "How mutations are selected during optimization",
+    "mutation_rate": 0.1,
+    "conservative_mutations": true,
+    "preserve_cysteines": true,
+    "favor_hydrophobic": true
+  },
+
+  "target_properties": {
+    "_description": "Target properties for designed peptides",
+    "target_hydrophobic_ratio": 0.4,
+    "max_net_charge": 2.0,
+    "preferred_length_range": [12, 20],
+    "required_cysteines": 2
+  },
+
+  "output": {
+    "_description": "Output formatting and file generation",
+    "save_intermediate": true,
+    "save_optimization_log": true,
+    "precision": 4,
+    "include_sequence_analysis": true,
+    "generate_report": true
+  },
+
+  "interface_binding": {
+    "_description": "Target protein interface parameters",
+    "default_interfaces": {
+      "6seo": "40,41,42,43,46,47,74,76,162,185,187,189,190,191,196,197,198,200",
+      "1ssc": "1,2,3,4,5",
+      "3r7g": "10,11,12,13,14"
+    },
+    "interface_importance": 0.5
+  },
+
+  "logging": {
+    "_description": "Progress logging and debugging settings",
+    "log_level": "INFO",
+    "progress_frequency": 50,
+    "save_checkpoints": false,
+    "verbose_scoring": false
+  }
+}

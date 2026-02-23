@@ -1,0 +1,79 @@
+{
+  "_description": "Configuration for MCTS policy-value network training",
+  "_source": "Extracted from examples/use_case_3_mcts_training.py",
+  "_script": "scripts/train_mcts.py",
+
+  "data_generation": {
+    "_description": "Training data generation parameters",
+    "peptide_length": 16,
+    "num_samples": 1000,
+    "random_seed": 42,
+    "validation_split": 0.2,
+    "_note": "validation_split: fraction of data used for validation"
+  },
+
+  "training": {
+    "_description": "Neural network training parameters",
+    "epochs": 100,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "early_stopping_patience": 10,
+    "min_improvement": 0.001,
+    "_note": "early_stopping_patience: epochs to wait before stopping if no improvement"
+  },
+
+  "model": {
+    "_description": "Neural network architecture parameters",
+    "hidden_dim": 128,
+    "num_layers": 2,
+    "dropout": 0.1,
+    "use_transformer": false,
+    "_note": "use_transformer=false uses simplified feedforward network"
+  },
+
+  "sequence_encoding": {
+    "_description": "How peptide sequences are encoded for the neural network",
+    "encoding_type": "onehot",
+    "amino_acids": ["A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V"],
+    "max_sequence_length": 50
+  },
+
+  "mcts_simulation": {
+    "_description": "MCTS simulation parameters for training data generation",
+    "c_puct": 5.0,
+    "n_playout": 100,
+    "temperature": 1.0,
+    "dirichlet_alpha": 0.3
+  },
+
+  "value_targets": {
+    "_description": "How to generate value targets for training",
+    "use_sequence_properties": true,
+    "hydrophobic_weight": 0.5,
+    "charge_penalty": -0.3,
+    "noise_std": 0.1
+  },
+
+  "output": {
+    "_description": "Output and model saving settings",
+    "save_model": true,
+    "save_training_data": true,
+    "precision": 4,
+    "model_format": "pickle",
+    "checkpoint_frequency": 10
+  },
+
+  "evaluation": {
+    "_description": "Model evaluation settings",
+    "metrics": ["mse", "mae", "correlation"],
+    "test_set_size": 500,
+    "cross_validation": false
+  },
+
+  "hardware": {
+    "_description": "Hardware and performance settings",
+    "use_gpu": false,
+    "num_workers": 1,
+    "memory_limit_gb": 4
+  }
+}
