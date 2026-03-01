@@ -1,0 +1,61 @@
+{
+  "test_date": "2025-12-31T18:30:42.657319",
+  "server_name": "cycpep-tools",
+  "tests": {
+    "get_server_info": {
+      "status": "passed",
+      "details": "Server info returned: cycpep-tools",
+      "error": "",
+      "timestamp": "2025-12-31T18:30:42.657457"
+    },
+    "list_jobs": {
+      "status": "passed",
+      "details": "List jobs returned: 2 jobs",
+      "error": "",
+      "timestamp": "2025-12-31T18:30:42.657795"
+    },
+    "get_job_status_nonexistent": {
+      "status": "passed",
+      "details": "Correctly handled non-existent job",
+      "error": "",
+      "timestamp": "2025-12-31T18:30:42.657901"
+    },
+    "analyze_peptide_no_input": {
+      "status": "passed",
+      "details": "Tool handled missing input: success",
+      "error": "",
+      "timestamp": "2025-12-31T18:30:42.942932"
+    },
+    "train_mcts_generate_minimal": {
+      "status": "passed",
+      "details": "MCTS data generation: success",
+      "error": "",
+      "timestamp": "2025-12-31T18:30:42.948001"
+    },
+    "submit_mcts_training": {
+      "status": "passed",
+      "details": "Job submitted with ID: e678f2ca",
+      "error": "",
+      "timestamp": "2025-12-31T18:30:42.948700"
+    },
+    "check_job_status": {
+      "status": "passed",
+      "details": "Job status check: running",
+      "error": "",
+      "timestamp": "2025-12-31T18:30:43.949708"
+    },
+    "error_handling_invalid_params": {
+      "status": "passed",
+      "details": "Handled invalid params: success",
+      "error": "",
+      "timestamp": "2025-12-31T18:30:43.951565"
+    }
+  },
+  "issues": [],
+  "summary": {
+    "total_tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "pass_rate": "100.0%"
+  }
+}

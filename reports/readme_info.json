@@ -1,0 +1,165 @@
+{
+  "project_name": "cycpep-tools",
+  "description": "MCP tools for cyclic peptide computational analysis using MCTS reinforcement learning",
+  "readme_created": "2025-12-31",
+  "tools": [
+    {
+      "name": "analyze_cyclic_peptide",
+      "type": "sync",
+      "description": "Analyze cyclic peptide-protein interactions with binding metrics and mutation suggestions",
+      "example_prompt": "Analyze the cyclic peptide XVPLRARNLPPSFFTEPX binding to protein 6seo with mutation suggestions",
+      "script_source": "scripts/analyze_peptide.py",
+      "estimated_runtime": "1-10 seconds"
+    },
+    {
+      "name": "train_mcts_generate_data",
+      "type": "sync",
+      "description": "Generate training data for MCTS policy-value network",
+      "example_prompt": "Generate 1000 training samples for 16-residue peptides",
+      "script_source": "scripts/train_mcts.py",
+      "estimated_runtime": "1-30 seconds"
+    },
+    {
+      "name": "train_mcts_evaluate_model",
+      "type": "sync",
+      "description": "Evaluate a trained MCTS policy-value model",
+      "example_prompt": "Evaluate the trained model at models/policy_value_net.pkl",
+      "script_source": "scripts/train_mcts.py",
+      "estimated_runtime": "10-60 seconds"
+    },
+    {
+      "name": "submit_mcts_training",
+      "type": "submit",
+      "description": "Submit MCTS policy-value network training job",
+      "example_prompt": "Train an MCTS policy-value network for 16-residue peptides with 100 epochs and batch size 32",
+      "script_source": "scripts/train_mcts.py",
+      "estimated_runtime": ">10 minutes"
+    },
+    {
+      "name": "submit_peptide_design",
+      "type": "submit",
+      "description": "Submit cyclic peptide design job using MCTS optimization",
+      "example_prompt": "Design a 16-residue cyclic peptide that binds to protein 6seo using 300 MCTS optimization iterations",
+      "script_source": "scripts/design_peptide.py",
+      "estimated_runtime": ">10 minutes"
+    },
+    {
+      "name": "submit_batch_peptide_analysis",
+      "type": "submit",
+      "description": "Submit batch analysis job for multiple cyclic peptides",
+      "example_prompt": "Submit batch analysis for multiple peptides with mutation suggestions",
+      "script_source": "scripts/analyze_peptide.py",
+      "estimated_runtime": ">10 minutes"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "analyze_peptide.py",
+      "description": "Analyze cyclic peptide-protein interactions with binding metrics and mutation suggestions",
+      "main_function": "run_analyze_peptide",
+      "example_command": "python scripts/analyze_peptide.py --input examples/data/sequences/target.csv --pdb-id 6seo --suggest-mutations",
+      "config_file": "configs/analyze_peptide_config.json"
+    },
+    {
+      "name": "train_mcts.py",
+      "description": "Train and evaluate MCTS policy-value networks for peptide optimization",
+      "main_function": "run_train_mcts",
+      "example_command": "python scripts/train_mcts.py --mode train --epochs 100 --batch-size 32",
+      "config_file": "configs/train_mcts_config.json"
+    },
+    {
+      "name": "design_peptide.py",
+      "description": "Design cyclic peptides using MCTS reinforcement learning optimization",
+      "main_function": "run_design_peptide",
+      "example_command": "python scripts/design_peptide.py --input examples/data/sequences/target.csv --target 6seo --iterations 300",
+      "config_file": "configs/design_peptide_config.json"
+    }
+  ],
+  "demo_data": [
+    {
+      "file": "sequences/target.csv",
+      "description": "Sample cyclic peptide-protein complexes",
+      "used_by": ["analyze_cyclic_peptide", "submit_peptide_design", "submit_batch_peptide_analysis"],
+      "contents": {
+        "1ssc": "11-residue cyclic peptide (PYVPVHFDASV)",
+        "3r7g": "22-residue cyclic peptide (KSLYKIKPRHDSGIKAKISMKT)",
+        "6seo": "18-residue cyclic peptide (XVPLRARNLPPSFFTEPX)"
+      }
+    }
+  ],
+  "configs": [
+    {
+      "file": "analyze_peptide_config.json",
+      "description": "Configuration for cyclic peptide analysis and mutation suggestions",
+      "parameters": {
+        "analysis": "simulate_binding_scores, score_range, plddt_range",
+        "mutations": "max_suggestions, min_improvement, position_scan",
+        "validation": "min_length, max_length, require_cysteines"
+      }
+    },
+    {
+      "file": "train_mcts_config.json",
+      "description": "Configuration for MCTS training parameters",
+      "parameters": {
+        "data_generation": "peptide_length, num_samples",
+        "training": "epochs, batch_size, learning_rate",
+        "model": "hidden_size, num_layers"
+      }
+    },
+    {
+      "file": "design_peptide_config.json",
+      "description": "Configuration for peptide design optimization",
+      "parameters": {
+        "design": "peptide_length, iterations",
+        "scoring": "hydrophobic_weight, charge_weight",
+        "mcts": "exploration_constant, jumpout_threshold"
+      }
+    },
+    {
+      "file": "default_config.json",
+      "description": "Shared default settings",
+      "parameters": {
+        "peptide_constraints": "min_length, max_length",
+        "performance": "max_concurrent_jobs",
+        "logging": "log_level, debug"
+      }
+    }
+  ],
+  "installation": {
+    "package_manager": "mamba (preferred) or conda",
+    "python_version": "3.10+",
+    "environments": {
+      "main": "./env (Python 3.10, MCP)",
+      "legacy": "./env_py39 (Python 3.9, HighPlay)"
+    },
+    "key_dependencies": ["fastmcp", "loguru", "pandas", "numpy", "rdkit"],
+    "optional_dependencies": ["pytorch", "colabfold"]
+  },
+  "examples": [
+    {
+      "name": "Quick Property Analysis",
+      "goal": "Analyze binding properties of a known cyclic peptide",
+      "mcp_prompt": "Analyze the cyclic peptide from PDB entry 6seo in the demo data. Include mutation suggestions for improved binding.",
+      "expected_output": "Binding score: 0.493, plDDT confidence: 79.0, mutation suggestions"
+    },
+    {
+      "name": "MCTS Peptide Design",
+      "goal": "Design a novel cyclic peptide targeting protein 6seo",
+      "mcp_prompt": "Design a 16-residue cyclic peptide that binds to protein 6seo using MCTS optimization with 300 iterations.",
+      "expected_output": "Job ID for tracking, optimized peptide sequence"
+    },
+    {
+      "name": "Neural Network Training",
+      "goal": "Train a policy-value network for peptide optimization",
+      "mcp_prompt": "Generate 5000 training samples for 16-residue peptides, then train the network with 100 epochs",
+      "expected_output": "Training data, trained model, evaluation metrics"
+    }
+  ],
+  "troubleshooting": [
+    "Environment not found: recreate with mamba/conda",
+    "RDKit import errors: install from conda-forge",
+    "MCP server not found: re-add to Claude Code",
+    "Invalid peptide sequence: use standard amino acid codes",
+    "Job failed: check job logs with get_job_log"
+  ]
+}

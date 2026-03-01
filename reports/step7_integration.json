@@ -1,0 +1,49 @@
+{
+  "test_date": "2025-12-31T18:28:36.031452",
+  "server_name": "cycpep-tools",
+  "tests": {
+    "server_initialization": {
+      "status": "passed",
+      "details": "Found all 12 expected tools",
+      "error": "",
+      "timestamp": "2025-12-31T18:28:36.031655"
+    },
+    "get_server_info": {
+      "status": "failed",
+      "details": "",
+      "error": "'FastMCP' object has no attribute 'call_tool'",
+      "timestamp": "2025-12-31T18:28:36.031713"
+    },
+    "job_management_tools": {
+      "status": "failed",
+      "details": "",
+      "error": "'FastMCP' object has no attribute 'call_tool'",
+      "timestamp": "2025-12-31T18:28:36.031759"
+    },
+    "sync_tool_error_handling": {
+      "status": "failed",
+      "details": "",
+      "error": "'FastMCP' object has no attribute 'call_tool'",
+      "timestamp": "2025-12-31T18:28:36.031802"
+    },
+    "submit_tools": {
+      "status": "failed",
+      "details": "",
+      "error": "'FastMCP' object has no attribute 'call_tool'",
+      "timestamp": "2025-12-31T18:28:36.031844"
+    },
+    "real_world_scenario": {
+      "status": "failed",
+      "details": "",
+      "error": "'FastMCP' object has no attribute 'call_tool'",
+      "timestamp": "2025-12-31T18:28:36.031922"
+    }
+  },
+  "issues": [],
+  "summary": {
+    "total_tests": 6,
+    "passed": 1,
+    "failed": 5,
+    "pass_rate": "16.7%"
+  }
+}

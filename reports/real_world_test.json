@@ -1,0 +1,42 @@
+{
+  "test_date": "2025-12-31T18:32:50.178120",
+  "scenarios": {
+    "basic_workflow": {
+      "status": "passed",
+      "details": "Successfully completed server info + data generation workflow",
+      "error": "",
+      "timestamp": "2025-12-31T18:32:50.477803"
+    },
+    "job_submission": {
+      "status": "passed",
+      "details": "Successfully submitted and monitored job 33ae8081",
+      "error": "",
+      "timestamp": "2025-12-31T18:32:54.480706"
+    },
+    "analysis_workflow": {
+      "status": "passed",
+      "details": "Analysis workflow completed: success",
+      "error": "",
+      "timestamp": "2025-12-31T18:32:54.482452"
+    },
+    "error_handling": {
+      "status": "passed",
+      "details": "Error handling working: success",
+      "error": "",
+      "timestamp": "2025-12-31T18:32:54.483487"
+    },
+    "job_management": {
+      "status": "passed",
+      "details": "Job management working with 4 jobs",
+      "error": "",
+      "timestamp": "2025-12-31T18:32:54.484559"
+    }
+  },
+  "summary": {
+    "total_scenarios": 5,
+    "passed": 5,
+    "failed": 0,
+    "pass_rate": "100.0%",
+    "jobs_created": 1
+  }
+}
