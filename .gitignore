@@ -36,3 +36,5 @@ test_batch_data/
 # OS files
 .DS_Store
 
+
+models/
